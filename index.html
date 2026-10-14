@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>A2 English: WH Interview Questions – Notebook Practice</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f1f5f9;--card:#fff;--text:#0f172a;--muted:#475569;--line:#cbd5e1;--soft:#e2e8f0;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#020617;--card:#0f172a;--text:#f1f5f9;--muted:#94a3b8;--line:#334155;--soft:#1e293b;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#020617;--card:#0f172a;--text:#f1f5f9;--muted:#94a3b8;--line:#334155;--soft:#1e293b;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',system-ui,sans-serif;display:flex;flex-direction:column;min-height:100vh;padding-top:env(safe-area-inset-top,0px)}
+header{position:sticky;top:env(safe-area-inset-top,0px);background:var(--card);border-bottom:1px solid var(--line);z-index:5}
+.hd{max-width:860px;margin:0 auto;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px;font-weight:800;font-size:14px}
+.hd small{color:var(--muted);font-weight:600}
+.bar{height:5px;background:var(--soft)}
+.bar div{height:100%;width:0;background:var(--a,#06b6d4);transition:width .3s}
+main{flex:1;width:100%;max-width:860px;margin:0 auto;padding:20px 16px}
+.card{background:var(--card);border:2px solid color-mix(in srgb,var(--a) 45%,transparent);border-radius:24px;padding:24px;max-width:100%}
+.tag{display:inline-block;padding:6px 16px;border-radius:12px;font-weight:800;font-size:20px;color:var(--a);background:color-mix(in srgb,var(--a) 15%,transparent);border:1px solid color-mix(in srgb,var(--a) 40%,transparent)}
+.ctx{color:var(--muted);font-size:13px;font-weight:600;margin-left:10px}
+.lbl{font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:800;color:var(--a);margin:22px 0 8px}
+.q{background:var(--soft);border-radius:18px;padding:18px;font-size:clamp(20px,4.5vw,30px);font-weight:800;line-height:1.3;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.q b{color:var(--a)}
+button{font:inherit;cursor:pointer}
+.say{border:0;border-radius:12px;background:color-mix(in srgb,var(--a) 20%,transparent);color:var(--text);font-size:20px;padding:10px 14px;flex-shrink:0}
+.st{border:2px dashed var(--a);border-radius:14px;padding:12px 16px;margin-bottom:10px;font-size:clamp(17px,3.6vw,22px);font-weight:600}
+.st i{font-style:normal;color:var(--muted);letter-spacing:.15em}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:6px 12px;border-radius:999px;background:var(--soft);font-weight:600;font-size:15px}
+.note{margin-top:22px;padding:14px 16px;border-radius:14px;background:color-mix(in srgb,var(--a) 10%,transparent);font-size:14px;line-height:1.5}
+h1{font-size:clamp(28px,6vw,46px);line-height:1.15;margin:16px 0 10px}
+.cover{text-align:center;padding:36px 20px}
+.cover p{color:var(--muted);max-width:520px;margin:0 auto 14px;line-height:1.55;font-size:16px}
+.cover ol{text-align:left;max-width:460px;margin:18px auto 26px;line-height:1.8;font-size:16px}
+.go{border:0;border-radius:16px;background:var(--a);color:#fff;font-weight:800;font-size:18px;padding:14px 32px}
+footer{position:sticky;bottom:0;background:var(--card);border-top:1px solid var(--line);padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px))}
+.nv{max-width:860px;margin:0 auto;display:flex;gap:12px;justify-content:space-between}
+.nv button{flex:1;border:1px solid var(--line);background:var(--soft);color:var(--text);border-radius:14px;padding:12px;font-weight:800;font-size:15px}
+.nv button#n{background:var(--a);border-color:var(--a);color:#fff}
+.nv button:disabled{opacity:.35;cursor:default}
+</style>
+</head>
+<body>
+<header>
+  <div class="hd"><span>✍️ WH Questions: Interview Notebook Practice</span><small id="cnt"></small></div>
+  <div class="bar"><div id="pg"></div></div>
+</header>
+<main><div id="slide"></div></main>
+<footer><div class="nv"><button id="b" onclick="go(-1)">← Back</button><button id="n" onclick="go(1)">Next →</button></div></footer>
+
+<script>
+const S=[
+{wh:"WHAT",e:"🛠️",c:"#0891b2",ctx:"Your skills",q:["What","computer problems can you fix?"],
+ st:["I can fix ______ and ______.","I often fix problems with ______."],
+ w:["slow computers","viruses","broken screens","printers","Wi-Fi","passwords"]},
+{wh:"WHERE",e:"🏫",c:"#d97706",ctx:"Your studies",q:["Where","did you learn about computers?"],
+ st:["I learned about computers at ______.","I studied ______ in ______."],
+ w:["school","college","a training course","online","at home","with my family"]},
+{wh:"WHO",e:"🤝",c:"#059669",ctx:"Teamwork",q:["Who","do you ask for help when you have a difficult problem?"],
+ st:["I ask my ______.","First, I ask ______. Then, I ______."],
+ w:["boss","teacher","colleague","friend","senior technician","the internet"]},
+{wh:"WHY",e:"💼",c:"#9333ea",ctx:"Your motivation",q:["Why","do you want to work here?"],
+ st:["I want to work here because ______.","I like this job because ______."],
+ w:["learn new things","help people","good company","enjoy computers","team","experience"]},
+{wh:"WHEN",e:"📅",c:"#e11d48",ctx:"Availability",q:["When","can you start work?"],
+ st:["I can start on ______.","I can start next ______."],
+ w:["Monday","next week","next month","tomorrow","in two weeks","immediately"]},
+{wh:"HOW",e:"😠",c:"#2563eb",ctx:"Customer service",q:["How","do you help a customer with a slow computer?"],
+ st:["First, I ______. Then, I ______.","I ask the customer ______. After that, I ______."],
+ w:["ask questions","check the memory","scan for viruses","clean the files","restart","explain"]},
+{wh:"WHICH",e:"💻",c:"#c026d3",ctx:"Operating systems",q:["Which","operating system do you know best?"],
+ st:["I know ______ best.","I use ______ every day because ______."],
+ w:["Windows","macOS","Linux","Android","iOS","easy to use"]},
+{wh:"WHAT",e:"⭐",c:"#0d9488",ctx:"Your strengths",q:["What","is your biggest strength as a technician?"],
+ st:["My biggest strength is ______.","I am good at ______ and ______."],
+ w:["patient","fast","organized","careful","friendly","good listener"]}
+];
+const N=S.length+1;let i=0;
+const $=id=>document.getElementById(id);
+function say(t){if(!('speechSynthesis' in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=.85;speechSynthesis.speak(u)}
+function render(){
+  const el=$('slide');
+  document.documentElement.style.setProperty('--a',i===0?'#0891b2':S[i-1].c);
+  if(i===0){
+    el.innerHTML=`<div class="card cover"><div class="tag" style="font-size:14px">🔧 Interview Writing Practice</div>
+    <h1>Answer WH Questions Like a Computer Technician 💻</h1>
+    <p>Practice real interview questions. Write your answers in your notebook.</p>
+    <ol><li>Copy the <b>question</b> into your notebook.</li><li>Use a <b>starting prompt</b> to begin your answer.</li><li>Write 2 full sentences. Use the <b>word bank</b> for ideas.</li></ol>
+    <button class="go" onclick="go(1)">Start ➜</button></div>`;
+  }else{
+    const s=S[i-1],full=s.q[0]+' '+s.q[1];
+    el.innerHTML=`<div class="card">
+    <div><span class="tag">${s.wh} ${s.e}</span><span class="ctx">Question ${i} of ${S.length} · ${s.ctx}</span></div>
+    <div class="lbl">❓ Interviewer question</div>
+    <div class="q"><span>"<b>${s.q[0]}</b> ${s.q[1]}"</span><button class="say" title="Listen" onclick="say('${full.replace(/'/g,"\\'")}')">🔊</button></div>
+    <div class="lbl">✏️ Start your answer like this</div>
+    ${s.st.map(t=>`<div class="st">${t.replace(/_+/g,m=>`<i>${m}</i>`)}</div>`).join('')}
+    <div class="lbl">💡 Word bank</div>
+    <div class="chips">${s.w.map(w=>`<span class="chip">${w}</span>`).join('')}</div>
+    <div class="note">📓 <b>In your notebook:</b> copy the question, then write your answer with 2 full sentences. Challenge: add one more detail with <b>because</b>, <b>and</b> or <b>then</b>.</div>
+    </div>`;
+  }
+  $('cnt').textContent=i===0?'Cover':`Slide ${i+1} of ${N}`;
+  $('pg').style.width=((i+1)/N*100)+'%';
+  $('b').disabled=i===0;
+  $('n').disabled=i===N-1;
+  $('n').textContent=i===N-1?'The end ✔':'Next →';
+  window.scrollTo(0,0);
+}
+function go(d){const k=i+d;if(k<0||k>=N)return;speechSynthesis&&speechSynthesis.cancel();i=k;render()}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')go(1);if(e.key==='ArrowLeft')go(-1)});
+render();
+</script>
+</body>
+</html>
